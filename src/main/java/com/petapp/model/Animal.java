@@ -16,7 +16,9 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.util.StringUtils;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 public class Animal implements Serializable {
@@ -43,6 +45,7 @@ public class Animal implements Serializable {
 	
 	@NotNull(message = "O Cliente é obrigatório")
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="codigo")
 	@JoinColumn(name = "cliente_codigo", referencedColumnName = "codigo", nullable = false)
 	private Cliente cliente;
 

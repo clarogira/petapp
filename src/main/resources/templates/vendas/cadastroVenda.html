@@ -82,6 +82,7 @@
 					<div class="input-group">
 				      <input id="nomeCliente" type="text" readonly="readonly" class="form-control" placeholder="Clique na lupa para pesquisar o cliente" th:field="*{cliente.nome}" />
 				     <input id="codigoCliente" type="hidden" th:field="*{cliente}"/>
+				    
 				      <span class="input-group-btn">
 				        <button class="btn  btn-default  js-tooltip" type="button" title="Pesquisa avançada" data-toggle="modal" data-target="#pesquisaRapidaClientes" th:disabled="${venda.salvarProibido}">
 				        	<i class="glyphicon  glyphicon-search"></i>

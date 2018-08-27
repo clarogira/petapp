@@ -13,7 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 
 
@@ -44,18 +46,18 @@ private String complemento;
 private String bairro;
 
 private String cep;
-//@JsonBackReference
-@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-private List<Animal> animais = new ArrayList<Animal>();
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="codigo")
+@OneToMany(mappedBy="cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+private List<Animal> animal = new ArrayList<Animal>();
 
 
 
 public List<Animal> getAnimais() {
-	return animais;
+	return animal;
 }
 
-public void setAnimais(List<Animal> animais) {
-	this.animais = animais;
+public void setAnimais(List<Animal> animal) {
+	this.animal = animal;
 }
 
 public String getNome() {
