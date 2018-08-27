@@ -64,12 +64,12 @@
 
 			<div class="row">
 				<div class="form-group  col-sm-6  bw-required">
-					<label class="control-label" for="nomeCliente">Cliente</label>
+					<label class="control-label" for="nomeCliente">Animal</label>
 					<div class="input-group">
-				      <input id="nomeCliente" type="text" readonly="readonly" class="form-control" placeholder="Clique na lupa para pesquisar o cliente"/>
+				      <input id="nomeAnimal" type="text" readonly="readonly" class="form-control" placeholder="Clique na lupa para pesquisar o Animal"/>
 				      <span class="input-group-btn">
 				        <button class="btn  btn-default  js-tooltip" type="button" title="Pesquisa avançada"
-				        		data-toggle="modal" data-target="#pesquisaRapidaClientes" >
+				        		data-toggle="modal" data-target="#pesquisaRapidaAnimais" >
 				        	<i class="glyphicon  glyphicon-search"></i>
 				        </button>
 				      </span>
@@ -174,12 +174,12 @@
 		</form>
 	</div>
 	
-	<th:block th:replace="clientes/PesquisaRapidaClientes :: pesquisaRapidaClientes"></th:block>
+	<th:block th:replace="animais/PesquisaRapidaAnimais :: pesquisaRapidaAnimais"></th:block>
 </section>
 
 <th:block layout:fragment="javascript-extra">
 
-	<script th:src="@{/javascripts/cliente.pesquisa-rapida.js}"></script>
+	<script th:src="@{/javascripts/animal.pesquisa-rapida.js}"></script>
 	<script>
 	$(function() {
 		$('.js-abas-venda a').click(function (e) {
