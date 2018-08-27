@@ -16,6 +16,8 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.util.StringUtils;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Animal implements Serializable {
 
@@ -44,9 +46,7 @@ public class Animal implements Serializable {
 	@JoinColumn(name = "cliente_codigo", referencedColumnName = "codigo", nullable = false)
 	private Cliente cliente;
 
-	//@ManyToMany(fetch = FetchType.LAZY)
-	//@JoinTable(name = "ordem_de_servico_animal", joinColumns = @JoinColumn(name = "animal_codigo", referencedColumnName = "codigo"), inverseJoinColumns = @JoinColumn(name = "ordem_de_servico_codigo", referencedColumnName = "codigo"))
-	//private List<OrdemDeServico> ordemdeservico;
+	
 
 	public Long getCodigo() {
 		return codigo;

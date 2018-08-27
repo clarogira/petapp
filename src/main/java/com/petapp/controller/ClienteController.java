@@ -96,7 +96,7 @@ public class ClienteController {
 	public @ResponseBody List<Cliente> pesquisar(String nome) {
 		System.out.println(nome);
 		
-		//validarTamanhoNome(nome);
+		validarTamanhoNome(nome);
 	
 		return cr.findByNomeContainingIgnoreCase(nome);
 	}

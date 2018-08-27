@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
@@ -43,8 +44,8 @@ private String complemento;
 private String bairro;
 
 private String cep;
-
-@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+//@JsonBackReference
+@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 private List<Animal> animais = new ArrayList<Animal>();
 
 
