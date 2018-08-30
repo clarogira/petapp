@@ -1,6 +1,7 @@
 package com.petapp.model;
 
 import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -17,8 +18,9 @@ import javax.validation.constraints.NotNull;
 import org.springframework.util.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 
 @Entity
 public class Animal implements Serializable {
@@ -42,10 +44,11 @@ public class Animal implements Serializable {
 	private boolean novaFoto;
 
 	private String foto;
-	
+	@JsonIdentityInfo(
+			  generator = ObjectIdGenerators.PropertyGenerator.class, 
+			  property = "codigo")
 	@NotNull(message = "O Cliente é obrigatório")
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="codigo")
 	@JoinColumn(name = "cliente_codigo", referencedColumnName = "codigo", nullable = false)
 	private Cliente cliente;
 

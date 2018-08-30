@@ -130,7 +130,7 @@ public class VendaRepositoryImpl implements VendaRepositoryQueries {
 			
 			boolean possuiMes = vendasNacionalidade.stream().filter(v -> v.getMes().equals(mesIdeal)).findAny().isPresent();
 			if (!possuiMes) {
-				vendasNacionalidade.add(i - 1, new VendaCategoria(mesIdeal, 0, 0, 0, 0, 0));
+				vendasNacionalidade.add(i - 1, new VendaCategoria(mesIdeal, 0, 0, 0, 0, 0, 0));
 			}
 			
 			now = now.minusMonths(1);

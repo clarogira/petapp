@@ -29,34 +29,30 @@
 
 	<div class="container-fluid">
 
-		<div class="alert  alert-success  alert-dismissible" role="alert">
-			<button type="button" class="close" data-dismiss="alert"
-				aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-			<i class="fa  fa-check"></i> Os 8 produtos selecionados foram
-			excluídos com sucesso!
-		</div>
-
+		
 		<form method="get" class="form-vertical  js-form-loading" th:object="${produtoFilter}">
 
 			<div class="row">
 
 				<div class="form-group col-md-9"
 					style="font-weight: bold; color: #A3723D">
-					<label class="control-label" for="fornecedor">fornecedor</label> <input
-						type="text" id="fornecedor" class="form-control"
-						th:value="*{fornecedor}">
+					<label class="control-label" for="fornecedor">fornecedor</label><select
+						id="fornecedor" class="form-control" th:field="*{fornecedor}">
+						<option value="">Selecione o Fornecedor</option>
+						<option th:each="fornecedor : ${todosFornecedores}"
+							th:text="${fornecedor.nome}" th:value="${fornecedor.codigo}"></option>
+					</select>
 
 
 				</div>
 
 				<div class="form-group col-md-3">
-					<label class="control-label" for="sabor">Categoria</label> <select
+					<label class="control-label" for="sabor">Categoria</label> 
+					<select th:field="*{categoria}"
 						id="sabor" class="form-control">
 						<option value="">Todos as Categorias</option>
 						<option th:each="categoria : ${categorias}"
-							th:value="${categoria}" th:text="${categoria.categoria}"></option>
+							th:value="${categoria}" th:text="${categoria.categoria}" ></option>
 
 					</select>
 				</div>
@@ -65,7 +61,7 @@
 				<div class="form-group col-lg-5">
 					<label class="control-label" for="Nome:">Produto</label> <input
 						type="text" class="form-control" placeholder="Produto"
-						th:value="*{nome}" />
+						th:value="*{nome}" th:field="*{nome}" />
 				</div>
 				
 				 <div class="col-lg-7  form-group">
@@ -110,7 +106,7 @@
 						<label for="estoqueAte" class="aw-form-label-between">até</label>
 						<div class="input-group">
 							<div class="input-group-addon">Un</div>
-							<input id="estoqueAte"  th:field="*{estoqueAte}"type="text" class="form-control  js-plain" />
+							<input id="estoqueAte"  th:field="*{estoqueAte}" type="text" class="form-control  js-plain" />
 						</div>
 					</div>
 				</div>
@@ -120,14 +116,14 @@
 				<div class="col-sm-6  form-group">
 					<label for="precoDe">Preço Compra</label>
 					<div class="form-inline">
-						<div class="input-group">
+						<div class="input-group">           
 							<div class="input-group-addon">R$</div>
-							<input id="valor" type="text" class="form-control  js-decimal" />
+							<input id="valorCompraDe" type="text" th:field="*{valorCompraDe}"  class="form-control  js-decimal" />
 						</div>
 						<label for="precoAte" class="aw-form-label-between">até</label>
 						<div class="input-group">
 							<div class="input-group-addon">R$</div>
-							<input id="valor" type="text" class="form-control  js-decimal" />
+							<input id="valorcompraAte" type="text"  th:field="*{valorCompraAte}" class="form-control  js-decimal" />
 						</div>
 					</div>
 				</div>
@@ -139,12 +135,12 @@
 					<div class="form-inline">
 						<div class="input-group">
 							<div class="input-group-addon">R$</div>
-							<input id="valor" type="text" class="form-control  js-decimal" />
+							<input id="valorVendaDe" type="text" th:field="*{valorVendaDe}"   class="form-control  js-decimal" />
 						</div>
 						<label for="precoAte" class="aw-form-label-between">até</label>
 						<div class="input-group">
 							<div class="input-group-addon">R$</div>
-							<input id="valor" type="text" class="form-control  js-decimal" />
+							<input id="valorVendaAte" type="text" th:field="*{valorVendaAte}"  class="form-control  js-decimal" />
 						</div>
 					</div>
 				</div>
@@ -153,7 +149,7 @@
 				<div class="form-group col-md-12">
 					<label class="control-label" for="descricao">Descrição</label>
 					<textarea rows="1" class="form-control" placeholder="descrição"
-						th:value="*{descricao}"></textarea>
+						th:value="*{descricao}" ></textarea>
 				</div>
                
 			</div>

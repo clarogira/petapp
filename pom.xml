@@ -5,9 +5,9 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.petapp</groupId>
-	<artifactId>eventoapp</artifactId>
-	<version>0.0.1</version>
-	<packaging>jar</packaging>
+	<artifactId>petapp</artifactId>
+	<version>1.0.0</version>
+	<packaging>war</packaging>
 
 	<name>demo</name>
 	<description>project for Spring Boot Pet</description>
@@ -58,7 +58,7 @@
 		</dependency>
 <dependency>
     <groupId>com.fasterxml.jackson.datatype</groupId>
-    <artifactId>jackson-datatype-jsr310</artifactId>
+    <artifactId>jackson-datatype-hibernate5</artifactId>
     </dependency>
 
 		<!-- https://mvnrepository.com/artifact/net.coobird/thumbnailator -->

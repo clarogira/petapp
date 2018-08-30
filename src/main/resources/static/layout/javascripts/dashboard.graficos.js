@@ -28,8 +28,8 @@ Brewer.GraficoVendaPorMes = (function() {
 		    	labels: meses,
 		    	datasets: [{
 		    		label: 'Vendas por mês',
-		    		backgroundColor: "rgba(26,179,148,0.5)",
-	                pointBorderColor: "rgba(26,179,148,1)",
+		    		backgroundColor: "rgba(256,179,0,0.5)",
+	                pointBorderColor: "rgba(26,179,0,1)",
 	                pointBackgroundColor: "#fff",
 	                data: valores
 		    	}]
@@ -57,19 +57,22 @@ Brewer.GraficoVendaPorOrigem = (function() {
 	function onDadosRecebidos(vendaOrigem) {
 		var meses = [];
 		var produtos_acessorio = [];
+		var produtos_banho = [];
 		var produtos_higiene = [];
-		var produtos_racao = [];
-		var produtos_remedio = [];
 		var produtos_petisco = [];
+		var produtos_racao = [];
+		var produtos_remedio = [];	
 		
 		vendaOrigem.forEach(function(obj) {
 			meses.unshift(obj.mes);
 			
 		produtos_acessorio.unshift(obj.total_acessorio);
+		produtos_banho.unshift(obj.total_banho);
 		produtos_higiene.unshift(obj.total_higiene);
+		produtos_petisco.unshift(obj.total_petisco);
 		produtos_racao.unshift(obj.total_racao);
 		produtos_remedio.unshift(obj.total_remedio);
-		produtos_petisco.unshift(obj.total_petisco);
+		
 		});
 		
 		var graficoVendasPorOrigem = new Chart(this.ctx, {
@@ -78,15 +81,20 @@ Brewer.GraficoVendaPorOrigem = (function() {
 		    	labels: meses,
 		    	datasets: [{
 		    		label: 'Acessório',
-		    	    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-		    	    borderColor:     'rgba(255, 99, 132, 1)',
+		    	    backgroundColor: 'rgba(0, 0, 255, 0.2)',
+		    	    borderColor:     'rgba(0, 0, 255, 1)',
 	                data: produtos_acessorio,
 	                borderWidth: 1
-		    	},
-		    	{
+		    	},{
+		    		label: 'Banho',
+		    		backgroundColor: 'rgba(0, 0.5, 0, 0.2)',
+		    		borderColor:     'rgba(0, 0.5, 0,  1)',
+	                data: produtos_banho,
+	                borderWidth: 1
+		    	},{
 		    		label: 'Higiene',
-		    		backgroundColor: 'rgba(54, 162, 235, 0.2)',
-		    		borderColor:     'rgba(54, 162, 235, 1)',
+		    		backgroundColor: 'rgba(148,0,211, 0.2)',
+		    		borderColor:     'rgba(148,0,211, 1)',
 	                data: produtos_higiene,
 	                borderWidth: 1
 		    	},
@@ -105,8 +113,8 @@ Brewer.GraficoVendaPorOrigem = (function() {
 		    		borderWidth: 1
 		    	},{
 		    		label: 'Remédio',
-		    		backgroundColor: 'rgba(153, 102, 255, 0.2)',
-		    		borderColor:     'rgba(153, 102, 255, 1)',
+		    		backgroundColor: 'rgba(255, 255, 0, 0.2)',
+		    		borderColor:     'rgba(255, 255, 0, 1)',
 	                data: produtos_remedio,
 	                borderWidth: 1
 		    	}]

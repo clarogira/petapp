@@ -84,7 +84,7 @@ public ModelAndView pesquisar(ProdutoFilter produtoFilter, @PageableDefault(size
 		mv.addObject("fornecedores", fr.findAll());
 		mv.addObject("categorias", Categoria.values());
 		mv.addObject("ramos", Ramo.values());
-		
+		mv.addObject("todosFornecedores", fr.findAll());
 		PageWrapper<Produto> paginaWrapper = new PageWrapper<> (pr.filtrar(produtoFilter, pageable), httpServletRequest);
 		mv.addObject("pagina", paginaWrapper);
 		

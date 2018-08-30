@@ -12,14 +12,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 
 
 @Entity
+
 public class Cliente  implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -46,17 +49,20 @@ private String complemento;
 private String bairro;
 
 private String cep;
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="codigo")
+@JsonIdentityInfo(
+		  generator = ObjectIdGenerators.PropertyGenerator.class, 
+		  property = "codigo")
 @OneToMany(mappedBy="cliente", cascade = CascadeType.ALL, orphanRemoval = true)
 private List<Animal> animal = new ArrayList<Animal>();
 
 
 
-public List<Animal> getAnimais() {
+
+public List<Animal> getAnimal() {
 	return animal;
 }
 
-public void setAnimais(List<Animal> animal) {
+public void setAnimal(List<Animal> animal) {
 	this.animal = animal;
 }
 

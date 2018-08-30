@@ -6,7 +6,8 @@ public enum Ramo {
 	HIGIENE("Higiene"),
 	PETISCO("Petisco"),
 	RACAO("Ração"),
-	REMEDIO("Remédio");
+	REMEDIO("Remédio"),
+	BANHOETOSA("Banho&Tosa");
 
 	private String ramo;
 

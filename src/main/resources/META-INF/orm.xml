@@ -18,6 +18,36 @@
 	<named-native-query name="Vendas.porCategoria" result-set-mapping="porCategoriaMapping">
 		<query>
 			select date_format(v.data_criacao, '%Y/%m') mes
+                , group_concat(distinct (select coalesce(sum(i.quantidade), 0) 
+				     from item_venda i
+				        , produto c
+				        , venda v1
+				     where i.codigo_venda = v1.codigo 
+				       and i.codigo_produto = c.codigo
+				       and c.categoria = 'ACESSORIO'
+				       and status = 'FECHADO'
+				       and date_format(v1.data_criacao, '%Y/%m') = date_format(v.data_criacao, '%Y/%m')
+				   )) total_acessorio
+                 , group_concat(distinct (select coalesce(sum(i.quantidade), 0) 
+				     from item_venda i
+				        , produto c
+				        , venda v1
+				     where i.codigo_venda = v1.codigo 
+				       and i.codigo_produto = c.codigo
+				       and c.categoria = 'BANHOETOSA'
+				       and status = 'FECHADO'
+				       and date_format(v1.data_criacao, '%Y/%m') = date_format(v.data_criacao, '%Y/%m')
+				   )) total_banho
+				   	 , group_concat(distinct (select coalesce(sum(i.quantidade), 0)
+				     from item_venda i
+				        , produto c
+				        , venda v1
+				     where i.codigo_venda = v1.codigo 
+				       and i.codigo_produto = c.codigo
+				       and c.categoria = 'HIGIENE'
+		    	       and status = 'FECHADO'
+				       and date_format(v1.data_criacao, '%Y/%m') = date_format(v.data_criacao, '%Y/%m')
+				   )) total_higiene
 				 , group_concat(distinct (select coalesce(sum(i.quantidade), 0) 
 				     from item_venda i
 				        , produto c
@@ -25,6 +55,7 @@
 				     where i.codigo_venda = v1.codigo 
 				       and i.codigo_produto = c.codigo
 				       and c.categoria = 'PETISCO'
+			           and status = 'FECHADO'
 				       and date_format(v1.data_criacao, '%Y/%m') = date_format(v.data_criacao, '%Y/%m')
 				   )) total_petisco
 				 , group_concat(distinct (select coalesce(sum(i.quantidade), 0)
@@ -34,26 +65,11 @@
 				     where i.codigo_venda = v1.codigo 
 				       and i.codigo_produto = c.codigo
 				       and c.categoria = 'RACAO'
+				       and status = 'FECHADO'
 				       and date_format(v1.data_criacao, '%Y/%m') = date_format(v.data_criacao, '%Y/%m')
 				   )) total_racao
-                    , group_concat(distinct (select coalesce(sum(i.quantidade), 0) 
-				     from item_venda i
-				        , produto c
-				        , venda v1
-				     where i.codigo_venda = v1.codigo 
-				       and i.codigo_produto = c.codigo
-				       and c.categoria = 'ACESSORIO'
-				       and date_format(v1.data_criacao, '%Y/%m') = date_format(v.data_criacao, '%Y/%m')
-				   )) total_acessorio
-				 , group_concat(distinct (select coalesce(sum(i.quantidade), 0)
-				     from item_venda i
-				        , produto c
-				        , venda v1
-				     where i.codigo_venda = v1.codigo 
-				       and i.codigo_produto = c.codigo
-				       and c.categoria = 'HIGIENE'
-				       and date_format(v1.data_criacao, '%Y/%m') = date_format(v.data_criacao, '%Y/%m')
-				   )) total_higiene
+                    
+			
                    , group_concat(distinct (select coalesce(sum(i.quantidade), 0)
 				     from item_venda i
 				        , produto c
@@ -61,6 +77,7 @@
 				     where i.codigo_venda = v1.codigo 
 				       and i.codigo_produto = c.codigo
 				       and c.categoria = 'REMEDIO'
+				       and status = 'FECHADO'
 				       and date_format(v1.data_criacao, '%Y/%m') = date_format(v.data_criacao, '%Y/%m')
 				   )) total_remedio
 			 from venda v
@@ -80,10 +97,12 @@
 		<constructor-result target-class="com.petapp.dto.VendaCategoria">
 			<column name="mes" class="java.lang.String"/>
 			<column name="total_acessorio" class="java.lang.Integer"/>
+			<column name="total_banho" class="java.lang.Integer"/>
 			<column name="total_higiene" class="java.lang.Integer"/>
 			<column name="total_petisco" class="java.lang.Integer"/>
 			<column name="total_racao" class="java.lang.Integer"/>
 			<column name="total_remedio" class="java.lang.Integer"/>
+			
 		</constructor-result>
 	</sql-result-set-mapping>
 </entity-mappings>

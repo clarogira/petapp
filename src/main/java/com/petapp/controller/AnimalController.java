@@ -98,18 +98,17 @@ public class AnimalController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/pesquisaAnimalRapido", method = RequestMethod.GET, consumes = { MediaType.APPLICATION_JSON_VALUE })
-	public @ResponseBody List<Animal> pesquisar(String nome) {
+	@GetMapping(value = "/pesquisaAnimalRapido")
+	public ModelAndView pesquisarRapido(AnimalFilter animalFilter, @PageableDefault(size=10, sort= {"cliente"})Pageable pageable, HttpServletRequest httpServletRequest) {
+		ModelAndView mv = new ModelAndView("animais/PesquisaRapidaAnimais");
 		
+		mv.addObject("clientes", cr.findAll());
+		mv.addObject("racas", Raca.values());
+		mv.addObject("cores", Cor.values());
+		PageWrapper<Animal> paginaWrapper = new PageWrapper<> (ar.filtrar(animalFilter, pageable), httpServletRequest);
+		mv.addObject("pagina", paginaWrapper);
 		
-		validarTamanhoNome(nome);
-	
-		return ar.findByNomeContainingIgnoreCase(nome);
-	}
-	private void validarTamanhoNome(String nome) {
-		if (StringUtils.isEmpty(nome) || nome.length() < 3) {
-			throw new IllegalArgumentException();
-		}
+		return mv;
 	}
 	
 	@ExceptionHandler(IllegalArgumentException.class)

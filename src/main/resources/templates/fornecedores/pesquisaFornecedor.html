@@ -31,14 +31,7 @@
 
 	<div class="container-fluid">
 
-		<div class="alert  alert-success  alert-dismissible" role="alert">
-			<button type="button" class="close" data-dismiss="alert"
-				aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-			<i class="fa  fa-check"></i> Os 8 produtos selecionados foram
-			excluídos com sucesso!
-		</div>
+		
 
 		<form method="get" class="form-vertical  js-form-loading"
 			th:object="${fornecedorFilter}">
@@ -49,7 +42,7 @@
 				</div>
 				<div class="col-sm-4  form-group">
 					<label class="control-label" for="telefone">Telefone</label> <input
-						type="text" class="form-control js-phone-number" th:field="*{telefone}" />
+						type="text" class="form-control " th:field="*{telefone}" />
 				</div>
 			</div>
 
@@ -61,7 +54,7 @@
 				</div>
 				<div class="form-group col-sm-4">
 					<label class="control-label" for="telefoneRepresentante">Telefone
-						Representante</label> <input type="text" class="form-control js-phone-number"
+						Representante</label> <input type="text" class="form-control "
 						th:field="*{telefoneRepresentante}" />
 				</div>
 			</div>
@@ -78,7 +71,7 @@
 				</div>
 				<div class="form-group col-md-4">
 					<label class="control-label" for="cnpj">CNPJ</label>
-					<input type="text" class="form-control cnpj" placeholder="cnpj"
+					<input type="text" class="form-control" placeholder="cnpj"
 						th:field="*{cnpj}" />
 				</div>
 				<div class="form-group col-md-5">
@@ -188,7 +181,7 @@
 							th:text="${fornecedor.representante}"></td>
 						<td class="table-pesq-produto-col-telefone_celular" th:text="${fornecedor.telefoneRepresentante}"></td>
 						<td class="table-pesq-produto-col-rua"
-							th:text="${fornecedor.ramo}"></td>
+							th:text="${fornecedor.ramo.ramo}"></td>
 						<td class="table-pesq-produto-col-rua"
 							th:text="${fornecedor.cnpj}"></td>
 							<td class="table-pesq-produto-col-rua"

@@ -40,6 +40,7 @@ public class ClienteController {
 	
 	@Autowired
 	private ClienteRepository cr;
+
 	@Autowired
 	private ClienteService cs;
 	

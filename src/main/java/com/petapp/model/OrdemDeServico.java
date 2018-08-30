@@ -95,6 +95,8 @@ public class OrdemDeServico implements Serializable {
 		return valorTotal;
 	}
 
+	
+
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -215,6 +217,8 @@ public class OrdemDeServico implements Serializable {
 			return false;
 		return true;
 	}
+
+	
 	
 
 }

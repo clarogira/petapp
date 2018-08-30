@@ -83,11 +83,11 @@ public class ProdutoRepositoryImpl implements ProdutoRepositoryQueries {
 				criteria.add(Restrictions.ilike("descricao", filtro.getDescricao(), MatchMode.ANYWHERE));
 			}
 			if (filtro.getEstoqueDe() != null) {
-				criteria.add(Restrictions.ge("quantidade", filtro.getEstoqueDe()));
+				criteria.add(Restrictions.ge("estoque", filtro.getEstoqueDe()));
 			}
 
 			if (filtro.getEstoqueAte() != null) {
-				criteria.add(Restrictions.le("quantidade", filtro.getEstoqueAte()));
+				criteria.add(Restrictions.le("estoque", filtro.getEstoqueAte()));
 			}
 
 			if (filtro.getCategoria() != null) {

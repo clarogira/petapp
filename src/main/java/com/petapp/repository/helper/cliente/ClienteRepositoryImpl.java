@@ -75,10 +75,10 @@ public class ClienteRepositoryImpl implements ClienteRepositoryQueries {
 				criteria.add(Restrictions.ilike("rua", filtro.getRua(), MatchMode.ANYWHERE));
 			}
 			if (filtro.getTelefone_celular()!= null) {
-				criteria.add(Restrictions.ilike("email", filtro.getTelefone_celular(), MatchMode.ANYWHERE));
+				criteria.add(Restrictions.ilike("telefone_celular", filtro.getTelefone_celular(), MatchMode.ANYWHERE));
 			}
 			if (filtro.getTelefone_fixo()!= null) {
-				criteria.add(Restrictions.ilike("email", filtro.getTelefone_fixo(), MatchMode.ANYWHERE));
+				criteria.add(Restrictions.ilike("telefone_fixo", filtro.getTelefone_fixo(), MatchMode.ANYWHERE));
 			}
 		}
 	}
