@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.petapp.model.Animal;
-import com.petapp.model.Cliente;
 import com.petapp.repository.helper.animal.AnimalRepositoryQueries;
 
 public interface AnimalRepository extends JpaRepository<Animal, Long>, AnimalRepositoryQueries {
