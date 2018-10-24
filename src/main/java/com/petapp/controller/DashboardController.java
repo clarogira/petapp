@@ -26,9 +26,11 @@ ClienteRepository cr;
 		mv.addObject("vendasNoAno", vr.valorTotalNoAno());
 		mv.addObject("vendasNoMes", vr.valorTotalNoMes());
 		mv.addObject("ticketMedio", vr.valorTicketMedioNoAno());
-
+		mv.addObject("vendasNoDia", vr.valorTotalNoDia());
 		mv.addObject("valorItensEstoque", pr.valorItensEstoque());
 		mv.addObject("totalClientes", cr.count());
+		mv.addObject("lucroNoMes", vr.lucroTotalNoMes());
+
 		return mv;
 	}
 	

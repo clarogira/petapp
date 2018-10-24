@@ -45,6 +45,8 @@ public class Produto implements Serializable {
 	private BigDecimal valorCompra;
 
 	private BigDecimal valorVenda;
+	
+	private BigDecimal lucro;
 
 	private String descricao;
 
@@ -164,6 +166,15 @@ public class Produto implements Serializable {
 		this.estoque = estoque;
 	}
 
+	public BigDecimal getLucro() {
+		return lucro;
+	}
+
+	public void setLucro(BigDecimal lucro) {
+		this.lucro = lucro;
+	}
+	
+    
 	@Override
 	public int hashCode() {
 		final int prime = 31;

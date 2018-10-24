@@ -77,9 +77,18 @@ public class VendaRepositoryImpl implements VendaRepositoryQueries {
 					.setParameter("ano", Year.now().getValue())
 					.setParameter("status", Status.FECHADO)
 					.getSingleResult());
+		System.out.println(optional);
 		return optional.orElse(BigDecimal.ZERO);
 	}
-
+	@Override
+	public BigDecimal valorTotalNoDia() {
+		Optional<BigDecimal> optional = Optional.ofNullable(
+				manager.createQuery("select sum(valorTotal) from Venda where dataCriacao = :dia and status = :status", BigDecimal.class)
+					.setParameter("dia", LocalDate.now())
+					.setParameter("status", Status.FECHADO)
+					.getSingleResult());
+		return optional.orElse(BigDecimal.ZERO);	}
+	
 	@Override
 	public BigDecimal valorTotalNoMes() {
 		Optional<BigDecimal> optional = Optional.ofNullable(
@@ -89,7 +98,15 @@ public class VendaRepositoryImpl implements VendaRepositoryQueries {
 					.getSingleResult());
 		return optional.orElse(BigDecimal.ZERO);
 	}
-
+	public BigDecimal lucroTotalNoMes() {
+		Optional<BigDecimal> optional = Optional.ofNullable(
+				manager.createQuery("select sum(lucroTotal) from Venda where month(dataCriacao) = :mes and status = :status", BigDecimal.class)
+					.setParameter("mes", MonthDay.now().getMonthValue())
+					.setParameter("status", Status.FECHADO)
+					.getSingleResult());
+		System.out.println(optional);
+		return optional.orElse(BigDecimal.ZERO);
+	}
 	@Override
 	public BigDecimal valorTicketMedioNoAno() {
 		Optional<BigDecimal> optional = Optional.ofNullable(
@@ -175,6 +192,8 @@ public class VendaRepositoryImpl implements VendaRepositoryQueries {
 			}
 		}
 	}
+
+	
 
 	
 	

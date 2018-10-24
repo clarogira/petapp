@@ -12,6 +12,7 @@ import com.petapp.repository.helper.fornecedor.FornecedorRepositoryQueries;
 public interface FornecedorRepository extends JpaRepository<Fornecedor, Long>, FornecedorRepositoryQueries {
 Fornecedor findByCodigo(Long codigo);
 List<Fornecedor> findByNomeContainingIgnoreCase(@Param("nome") String nome);
+List<Fornecedor> findAllByOrderByNomeAsc();
 public Optional<Fornecedor> findByNomeIgnoreCase(String nome);
 
 }

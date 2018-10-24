@@ -12,7 +12,7 @@ public interface AnimalRepository extends JpaRepository<Animal, Long>, AnimalRep
      Animal findByCodigo(Long codigo);
 
 //	Iterable<Animal> findByNomeContainingIgnoreCase(String nome);
-	public List<Animal> findByNomeContainingIgnoreCase(String nome);
+	public List<Animal> findByNomeContainingIgnoreCaseOrderByNomeAsc(String nome);
 
 	
 

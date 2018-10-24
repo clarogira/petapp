@@ -57,7 +57,19 @@
             var total = getMoney('valorCompra')*getMoney('porcentagem');
 
             id('valorVenda').value = String(total.toFixed(2)).formatMoney();
+			var produtoLucro = getMoney('valorVenda') - getMoney('valorCompra');
+	
+	        id('lucro').value = String(produtoLucro.toFixed(2)).formatMoney();
+          
+        }
 
+		function lucra()
+
+        {
+
+	    var produtoLucro = getMoney('valorVenda') - getMoney('valorCompra');
+	
+	    id('lucro').value = String(produtoLucro.toFixed(2)).formatMoney();
         }
 
     </script>
@@ -72,7 +84,7 @@
 				</div>
 			<div class="col-xs-2">
 				<div class="aw-page-header-controls">
-					<a class="btn btn-primary" href="/produtos"> <i
+					<a class="btn btn-warning" href="/produtos"> <i
 						class="fa  fa-plus-circle"></i> <span class="hidden-xs  hidden-sm">Pesquisa
 							Produto</span>
 					</a>
@@ -183,7 +195,7 @@
 					<div class="input-group">
 						<div class="input-group-addon">R$</div>
 						<input  name="valorVenda"  id="valorVenda" type="text" class="form-control  js-decimal js-valor-final"
-							th:field="*{valorVenda}" />
+							th:field="*{valorVenda}" onkeyup="lucra()" />
 					</div>
 				</div>
 			</div>
@@ -212,7 +224,8 @@
 				</div>
 			</div>
 
-			
+			<input  name="lucro"  id="lucro" type="text" class="form-control  js-decimal js-valor-lucro"
+							th:field="*{lucro}" />
 				<button class="btn  btn-primary" type="submit">Salvar</button>
 
 			</form>
@@ -221,12 +234,17 @@
 
 	<script>
 		function excluir() {
+			this.valorLucroInput = $('#lucro');
 			this.valorFinal = $('.js-valor-final');
+			this.valorLucro = $('.js-valor-lucro');
 			this.valorCompraInput = $('#valorCompra');
 			this.valorPorcentagemInput = $('#porcentagem');
 			this.valorVendaInput = $('#valorVenda');
+			
 			var valorFinal = this.valorCompraInput  - this.valorPorcentagemInput;
+			var valorLucro = this.valorVendaInput  - this.valorCompraInput;
 			this.valorFinal.html(valorFinal);
+			this.valorLucro.html(valorLucro);
 		}
 	</script>
 	<div th:replace="fornecedores/CadastroFornecedorModal :: modal"></div>

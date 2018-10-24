@@ -21,7 +21,10 @@ public interface VendaRepositoryQueries {
 	public BigDecimal valorTotalNoMes();
 	public BigDecimal valorTicketMedioNoAno();
 	
-	
 	public List<VendaMes> totalPorMes();
+	public BigDecimal lucroTotalNoMes();
+	
 	List<VendaCategoria> totalPorCategoria();
+
+	BigDecimal valorTotalNoDia();
 }

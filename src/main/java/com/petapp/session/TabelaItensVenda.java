@@ -37,6 +37,7 @@ class TabelaItensVenda {
 			itemVenda.setProduto(produto);
 			itemVenda.setQuantidade(quantidade);
 			itemVenda.setValorUnitario(produto.getValorVenda());
+			itemVenda.setLucroUnitario(produto.getLucro());
 			itens.add(0, itemVenda);
 		}
 	}

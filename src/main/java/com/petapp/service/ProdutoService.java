@@ -33,6 +33,7 @@ public void salvar(Produto produto) {
     if (produtoOptional.isPresent()) {
 		throw new NomeProdutoJaCadastradoException("Produto já  cadastrado no banco de dados");
 	}
+    
 	pr.save(produto);
 	publisher.publishEvent(new ProdutoSalvoEvent(produto));
 }

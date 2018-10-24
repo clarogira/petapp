@@ -48,7 +48,7 @@ public class ProdutoController {
 	@RequestMapping(value ="/nova")
 	public ModelAndView nova(Produto produto) {
 		ModelAndView mv = new ModelAndView("produtos/cadastroProduto");
-		mv.addObject("todosFornecedores", fr.findAll());
+		mv.addObject("todosFornecedores", fr.findAllByOrderByNomeAsc());
 		mv.addObject("categorias", Categoria.values());
 		mv.addObject("ramos", Ramo.values());
 		

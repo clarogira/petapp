@@ -16,6 +16,7 @@ public class ItemVenda {
 	private Long codigo;
 	private Integer quantidade;
 	private BigDecimal valorUnitario;
+	private BigDecimal lucroUnitario;
 	
 	@ManyToOne
 	@JoinColumn(name = "codigo_produto")
@@ -53,12 +54,24 @@ public class ItemVenda {
 		return venda;
 	}
 
+	public BigDecimal getLucroUnitario() {
+		return lucroUnitario;
+	}
+
+	public void setLucroUnitario(BigDecimal lucroUnitario) {
+		this.lucroUnitario = lucroUnitario;
+	}
+
 	public void setVenda(Venda venda) {
 		this.venda = venda;
 	}
 	public BigDecimal getValorTotal(){
 		return valorUnitario.multiply(new BigDecimal(quantidade));
 	}
+	public BigDecimal getLucroTotal(){
+		return lucroUnitario.multiply(new BigDecimal(quantidade));
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

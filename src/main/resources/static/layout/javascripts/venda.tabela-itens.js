@@ -70,6 +70,7 @@ this.tabelaProdutosContainer.html(html);
 	
 	function onExclusaoItemClick(evento) {
 		var codigoProduto = $(evento.target).data('codigo-produto');
+		
 		var resposta = $.ajax({
 			url: 'item/' + this.uuid + '/' + codigoProduto,
 			method: 'DELETE'

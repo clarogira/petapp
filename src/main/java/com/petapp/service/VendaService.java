@@ -31,10 +31,8 @@ public void salvar(Venda venda) {
 	} else {
 		Venda vendaExistente = vr.findByCodigo(venda.getCodigo());
 		venda.setDataCriacao(vendaExistente.getDataCriacao());
-		
 	}
-    System.out.println("passei pelo salvar        ");
-//	venda.setStatus(Status.PENDENTE);
+			
 	vr.save(venda);
 }
 

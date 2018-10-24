@@ -1,6 +1,7 @@
 package com.petapp.controller;
 
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -44,7 +45,7 @@ public class AnimalController {
 	@RequestMapping(value = "/nova")
     public ModelAndView nova(Animal animal) {
 		ModelAndView mv = new ModelAndView("animais/cadastroAnimal");
-		mv.addObject("clientes", cr.findAll());
+		mv.addObject("clientes", cr.findAllByOrderByNomeAsc());
 		mv.addObject("racas", Raca.values());
 		mv.addObject("cores", Cor.values());
         return mv;

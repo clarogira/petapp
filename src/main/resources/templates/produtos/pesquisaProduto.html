@@ -11,13 +11,13 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-10">
-					<
+				
 					<h2 style="color: #A3723D">Pesquisa de Produtos</h2>
 				</div>
 
 				<div class="col-xs-2">
 					<div class="aw-page-header-controls">
-						<a class="btn btn-primary" href="/produtos/nova"> <i
+						<a class="btn btn-warning" href="/produtos/nova"> <i
 							class="fa  fa-plus-circle"></i> <span
 							class="hidden-xs  hidden-sm">Novo produto</span>
 						</a>
@@ -257,7 +257,8 @@
 					<td class="table-pesq-produto-col-raca"  th:text="${produto.estoque}"></td>
 					<td class="table-pesq-produto-col-cor"  th:text="${produto.categoria.categoria}"></td>
 					<td class="table-pesq-produto-col-observacao"  th:text="${produto.peso}"></td>
-					<td class="table-pesq-produto-col-observacao"  th:text="${produto.validade}"></td>
+					
+					<td th:text="${#temporals.format(produto.validade, 'dd/MM/yyyy')}"></td>
 					<td class="table-pesq-produto-col-observacao"  th:text="${produto.valorCompra}"></td>
 					<td class="table-pesq-produto-col-observacao"  th:text="${produto.ValorVenda}"></td>
 					<td class="table-pesq-produto-col-observacao"  th:text="${produto.descricao}"></td>

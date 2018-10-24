@@ -16,7 +16,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-10">
-					<h2>Pesquisa de vendas</h2>
+					<h2 style="color: #A3723D">Pesquisa de vendas</h2>
 				</div>
 				
 				<div class="col-xs-2">
@@ -112,10 +112,11 @@
 						<td th:text="${venda.codigo}"></td>
 						<td th:text="${venda.status.descricao}"></td>
 						<td th:text="${{venda.cliente.nome}}"></td>
-						<td th:text="${venda.dataCriacao}"></td>
+						<td th:text="${#temporals.format(venda.dataCriacao, 'dd/MM/yyyy')}"></td>
+						
 						<td th:text="|R$ ${{venda.valorDesconto}}|"></td>
 						<td th:text="|R$ ${{venda.valorTotal}}|"></td>
-						<td th:text="${{venda.formaDePagamento.descricao}}"></td>
+						<td th:text="${{venda.formaDePagamento.descricao}} "></td>
 	                 	<td class="text-center">
 							<a class="btn  btn-link  btn-xs  js-tooltip" title="Editar" th:href="@{/vendas/{codigo}(codigo=${venda.codigo})}"> 
 								<i class="glyphicon glyphicon-pencil"></i>

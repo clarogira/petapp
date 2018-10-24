@@ -2,6 +2,7 @@ package com.petapp.model;
 
 public enum FormaDePagamento {
 	
+	ZERO("Selecione"),
 	CREDITO("Crédito"),
 	DEBITO("Débito"),
 	DINHEIRO("Dinheiro"),

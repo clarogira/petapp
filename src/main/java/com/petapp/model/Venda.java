@@ -19,6 +19,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotBlank;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
@@ -29,7 +32,7 @@ public class Venda implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long codigo;
-	
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private LocalDate dataCriacao;
 	
 	private BigDecimal valorDesconto;
@@ -37,11 +40,13 @@ public class Venda implements Serializable {
 	private BigDecimal valorFrete;
 	
 	private BigDecimal valorTotal  = BigDecimal.ZERO;
-	
+	private BigDecimal lucroTotal  = BigDecimal.ZERO;
 	
 	private String observacao;
 	
 	private LocalDate dataHoraEntrega;
+	
+
 	@Enumerated(EnumType.STRING)
 	private FormaDePagamento formaDePagamento;
 
@@ -102,6 +107,14 @@ public class Venda implements Serializable {
 
 	public void setValorTotal(BigDecimal valorTotal) {
 		this.valorTotal = valorTotal;
+	}
+
+	public BigDecimal getLucroTotal() {
+		return lucroTotal;
+	}
+
+	public void setLucroTotal(BigDecimal lucroTotal) {
+		this.lucroTotal = lucroTotal;
 	}
 
 	public String getObservacao() {
@@ -183,6 +196,23 @@ public class Venda implements Serializable {
 		this.valorTotal = calcularValorTotal(valorTotalItens, getValorFrete(), getValorDesconto());
 	}
 	
+
+	public void calcularLucroTotal() {
+		BigDecimal lucroTotalItens = getItens().stream()
+				.map(ItemVenda::getLucroTotal)
+				.reduce(BigDecimal::add)
+				.orElse(BigDecimal.ZERO);
+		
+		this.lucroTotal = calcularLucroTotal(lucroTotalItens);
+	}
+	
+	
+	private BigDecimal calcularLucroTotal(BigDecimal lucroTotalItens) {
+		BigDecimal lucroTotal = lucroTotalItens;
+		return lucroTotal;
+	
+	}
+
 	public Long getDiasCriacao() {
 		LocalDate inicio = dataCriacao != null ? dataCriacao : LocalDate.now();
 		return ChronoUnit.DAYS.between(inicio, LocalDate.now());

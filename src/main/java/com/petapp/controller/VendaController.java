@@ -58,11 +58,7 @@ public class VendaController {
 	@Autowired
 	private VendaValidator vendaValidator;
 	
-/*	@InitBinder
-	public void inicializarValidador(WebDataBinder binder) {
-		binder.setValidator(vendaValidator);
-	}
-	*/
+
 	@GetMapping("/nova")
 	public ModelAndView nova(Venda venda) {
 		ModelAndView mv = new ModelAndView("vendas/CadastroVenda");
@@ -74,7 +70,7 @@ public class VendaController {
 		mv.addObject("valorDesconto", venda.getValorDesconto());
 		mv.addObject("valorTotalItens", tabelaItens.getValorTotal(venda.getUuid()));
 		mv.addObject("formasDePagamento", FormaDePagamento.values());
-
+        
 		return mv;
 	}
 
@@ -90,15 +86,13 @@ public class VendaController {
 		if (result.hasErrors()) {
 			return nova(venda);
 		}
-		
-		
-		
+				
 		vs.salvar(venda);
 		attributes.addFlashAttribute("mensagem", "Venda salva com sucesso");
 		return new ModelAndView("redirect:/vendas");
 	}
 
-	@PostMapping(value = "/nova", params = "emitir")
+	@PostMapping(value = "/nova", params = "fechar")
 	public ModelAndView emitir(Venda venda, BindingResult result, RedirectAttributes attributes) {
 		validarVenda(venda, result);
 		if (result.hasErrors()) {
@@ -187,6 +181,7 @@ public class VendaController {
 	private void validarVenda(Venda venda, BindingResult result) {
 		venda.adicionarItens(tabelaItens.getItens(venda.getUuid()));
 		venda.calcularValorTotal();
+		venda.calcularLucroTotal();
 		
 		vendaValidator.validate(venda, result);
 	}
