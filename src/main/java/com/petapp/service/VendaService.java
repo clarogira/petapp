@@ -1,5 +1,6 @@
 package com.petapp.service;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.PersistenceException;
@@ -32,7 +33,9 @@ public void salvar(Venda venda) {
 		Venda vendaExistente = vr.findByCodigo(venda.getCodigo());
 		venda.setDataCriacao(vendaExistente.getDataCriacao());
 	}
-			
+	if (venda.getValorDesconto() == null) {
+		venda.setValorDesconto(new BigDecimal(0.00));
+	}		
 	vr.save(venda);
 }
 
