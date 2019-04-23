@@ -2,7 +2,11 @@ package com.petapp.service;
 
 import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,8 +28,10 @@ public class RelatorioService {
 	private DataSource dataSource;
 	
 	public byte[] gerarRelatorioVendasEmitidas(PeriodoRelatorio periodoRelatorio) throws Exception {
-		LocalDate dataInicio = periodoRelatorio.getDataInicio();
-		LocalDate dataFim =periodoRelatorio.getDataFim();
+		java.util.Date dataInicio = Date.from(LocalDateTime.of(periodoRelatorio.getDataInicio(), LocalTime.of(0, 0, 0))
+				.atZone(ZoneId.systemDefault()).toInstant());
+		java.util.Date dataFim = Date.from(LocalDateTime.of(periodoRelatorio.getDataFim(), LocalTime.of(23, 59, 59))
+				.atZone(ZoneId.systemDefault()).toInstant());
 		
 		Map<String, Object> parametros = new HashMap<>();
 		parametros.put("format", "pdf");

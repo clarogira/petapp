@@ -31,13 +31,14 @@
 		<!-- Thymeleaf extras data attribute -->
 		<thymeleaf-extras-data-attribute.version>2.0.1</thymeleaf-extras-data-attribute.version>
 
-
+<!-- JasperReports -->
+		<jasperreports.version>6.3.0</jasperreports.version>
+		
+		<!-- JasperReports Fonts -->
+		<jasperreports-fonts.version>6.0.0</jasperreports-fonts.version>
 	</properties>
 
 	<dependencies>
-
-
-
 		<!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
@@ -127,7 +128,20 @@
 		<artifactId>spring-boot-starter-tomcat</artifactId>
 		<scope>provided</scope>
 	</dependency>
-
+	
+<!-- JasperReports -->
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>${jasperreports.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+		    <groupId>net.sf.jasperreports</groupId>
+		    <artifactId>jasperreports-fonts</artifactId>
+		    <version>${jasperreports-fonts.version}</version>
+		    <scope>compile</scope>
+		</dependency>
 
 	</dependencies>
 

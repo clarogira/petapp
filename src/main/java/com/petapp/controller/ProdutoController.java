@@ -78,7 +78,7 @@ public class ProdutoController {
 	
 	
 @GetMapping
-public ModelAndView pesquisar(ProdutoFilter produtoFilter, @PageableDefault(size=10, sort= {"nome"})Pageable pageable, HttpServletRequest httpServletRequest) {
+public ModelAndView pesquisar(ProdutoFilter produtoFilter, @PageableDefault(size=50, sort= {"nome"})Pageable pageable, HttpServletRequest httpServletRequest) {
 		ModelAndView mv = new ModelAndView("produtos/pesquisaProduto");
 		
 		mv.addObject("fornecedores", fr.findAll());

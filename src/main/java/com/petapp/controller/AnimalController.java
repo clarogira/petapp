@@ -64,7 +64,7 @@ public class AnimalController {
 	}
 
 	@GetMapping
-	public ModelAndView pesquisar(AnimalFilter animalFilter, @PageableDefault(size=10, sort= {"cliente"})Pageable pageable, HttpServletRequest httpServletRequest) {
+	public ModelAndView pesquisar(AnimalFilter animalFilter, @PageableDefault(size=50, sort= {"cliente"})Pageable pageable, HttpServletRequest httpServletRequest) {
 		ModelAndView mv = new ModelAndView("animais/pesquisaAnimal");
 		
 		mv.addObject("clientes", cr.findAll());
@@ -95,7 +95,7 @@ public class AnimalController {
 	}
 	
 	@GetMapping(value = "/pesquisaAnimalRapido")
-	public ModelAndView pesquisarRapido(AnimalFilter animalFilter, @PageableDefault(size=10, sort= {"cliente"})Pageable pageable, HttpServletRequest httpServletRequest) {
+	public ModelAndView pesquisarRapido(AnimalFilter animalFilter, @PageableDefault(size=20, sort= {"cliente"})Pageable pageable, HttpServletRequest httpServletRequest) {
 		ModelAndView mv = new ModelAndView("animais/PesquisaRapidaAnimais");
 		
 		mv.addObject("clientes", cr.findAll());

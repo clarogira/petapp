@@ -30,7 +30,7 @@ public void salvar(Venda venda) {
 		venda.setDataCriacao(LocalDate.now());
 		
 	} else {
-		Venda vendaExistente = vr.findByCodigo(venda.getCodigo());
+		Venda vendaExistente = vr.findByCodigoOrderByCodigoDesc(venda.getCodigo());
 		venda.setDataCriacao(vendaExistente.getDataCriacao());
 	}
 	if (venda.getValorDesconto() == null) {
@@ -62,7 +62,7 @@ public void excluir(Venda venda) {
 
 @Transactional
 public void cancelar(Venda venda) {
-	Venda vendaExistente = vr.findByCodigo(venda.getCodigo());
+	Venda vendaExistente = vr.findByCodigoOrderByCodigoDesc(venda.getCodigo());
 	
 	vendaExistente.setStatus(Status.CANCELADA);
 	vr.save(vendaExistente);

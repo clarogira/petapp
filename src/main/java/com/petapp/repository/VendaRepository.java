@@ -6,7 +6,8 @@ import com.petapp.model.Venda;
 import com.petapp.repository.helper.venda.VendaRepositoryQueries;
 
 public interface VendaRepository extends JpaRepository<Venda, Long>, VendaRepositoryQueries {
-	Venda	findByCodigo(Long codigo);
+	Venda	findByCodigoOrderByCodigoDesc(Long codigo);
+	
 
 	
 

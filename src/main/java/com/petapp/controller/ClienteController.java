@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -84,7 +85,7 @@ public class ClienteController {
 	}
 	
 	@GetMapping
-	public ModelAndView pesquisar(ClienteFilter clienteFilter, @PageableDefault(size=10, sort= {"nome"})Pageable pageable, HttpServletRequest httpServletRequest) {
+	public ModelAndView pesquisar(ClienteFilter clienteFilter, @PageableDefault(size=50, sort= {"nome"}, direction=Direction.ASC)Pageable pageable, HttpServletRequest httpServletRequest) {
 		ModelAndView mv = new ModelAndView("clientes/pesquisaCliente");
 				
 		PageWrapper<Cliente> paginaWrapper = new PageWrapper<> (cr.filtrar(clienteFilter, pageable), httpServletRequest);

@@ -82,7 +82,7 @@ public class FornecedorController {
 		
 	
 		@GetMapping
-		public ModelAndView pesquisar(FornecedorFilter fornecedorFilter, @PageableDefault(size=10, sort= {"nome"})Pageable pageable, HttpServletRequest httpServletRequest) {
+		public ModelAndView pesquisar(FornecedorFilter fornecedorFilter, @PageableDefault(size=50, sort= {"nome"})Pageable pageable, HttpServletRequest httpServletRequest) {
 			ModelAndView mv = new ModelAndView("fornecedores/pesquisaFornecedor");
 			mv.addObject("ramos", Ramo.values());	
 			PageWrapper<Fornecedor> paginaWrapper = new PageWrapper<> (fr.filtrar(fornecedorFilter, pageable), httpServletRequest);
