@@ -5,7 +5,7 @@
 	layout:decorator="layoutPadrao"	>
 
 <head>
-	<title>Relatório - Vendas Emitidas</title>
+	<title>Relatório - Produtos</title>
 </head>
 
 <section layout:fragment="conteudo">
@@ -13,18 +13,18 @@
 	<div class="page-header">
 		<div class="container-fluid">
 			<h1>
-				Relatório de vendas emitidas
+				Relatório de Produtos
 			</h1>
 		</div>
 	</div>
 	
 	<div class="container-fluid">
-		<form method="POST" th:object="${periodoRelatorio}" th:action="@{/relatorios/vendasEmitidas}">
+		<form method="POST" th:object="${periodoRelatorio}" th:action="@{/relatorios/produtos}">
 			<th:block th:include="fragments/MensagensErroValidacao"></th:block>
 			
 			<div class="row">
 				<div class="form-group  col-sm-12">
-					<label for="dataInicio">Data de criação</label>
+					<label for="dataInicio">Data da Validade</label>
 					<div class="form-inline">
 						<input type="text" class="form-control  aw-form-control-inline-sm  js-date" 
 							id="dataInicio" th:field="*{dataInicio}" autocomplete="off"/>
@@ -34,6 +34,19 @@
 					</div>
 				</div>
 			</div>
+				
+			<div class="row">
+				<div class="form-group  col-sm-12">
+					<label for="min">mínimo</label>
+					<div class="form-inline">
+						<input type="number" class="form-control  aw-form-control-inline-sm" 
+							id="min" th:field="*{min}" autocomplete="off"/>
+						<label for="a" class="aw-form-label-between">máximo</label>
+						<input type="number" class="form-control  aw-form-control-inline-sm" 
+							id="max" th:field="*{max}" />
+					</div>
+				</div>
+			</div>	
 				
 			<button type="submit"  onclick="target = '_blank'" class="btn  btn-primary">Emitir</button>
 		</form>

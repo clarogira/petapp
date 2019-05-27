@@ -43,7 +43,7 @@ public class Fornecedor implements Serializable {
 	
 	private String observacao;
 
-	@OneToMany(mappedBy = "fornecedor", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "fornecedor", cascade = CascadeType.ALL)
 	private List<Produto> produtos = new ArrayList<Produto>();
 	
 	

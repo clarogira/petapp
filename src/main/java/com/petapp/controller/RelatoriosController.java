@@ -18,6 +18,8 @@ public class RelatoriosController {
 	@Autowired
 	private RelatorioService relatorioService;
 	
+	
+	//vendas
 	@GetMapping("/vendasEmitidas")
 	public ModelAndView relatorioVendasEmitidas() {
 		ModelAndView mv = new ModelAndView("relatorio/RelatorioVendasEmitidas");
@@ -28,6 +30,22 @@ public class RelatoriosController {
 	@PostMapping("/vendasEmitidas")
 	public ResponseEntity<byte[]> gerarRelatorioVendasEmitidas(PeriodoRelatorio periodoRelatorio) throws Exception {
 		byte[] relatorio = relatorioService.gerarRelatorioVendasEmitidas(periodoRelatorio); 
+		
+		return ResponseEntity.ok()
+				.header(org.springframework.http.HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_PDF_VALUE)
+				.body(relatorio);
+	}
+	//produtos
+	
+	@GetMapping("/produtos")
+	public ModelAndView relatorioProdutos() {
+		ModelAndView mv = new ModelAndView("relatorio/RelatorioProdutos");
+		mv.addObject(new PeriodoRelatorio());
+		return mv;
+	}
+	@PostMapping("/produtos")
+	public ResponseEntity<byte[]> gerarRelatorioProdutos(PeriodoRelatorio periodoRelatorio) throws Exception {
+		byte[] relatorio = relatorioService.gerarRelatorioProdutos(periodoRelatorio); 
 		
 		return ResponseEntity.ok()
 				.header(org.springframework.http.HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_PDF_VALUE)
