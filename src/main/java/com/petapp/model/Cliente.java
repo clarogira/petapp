@@ -45,14 +45,9 @@ private String complemento;
 private String bairro;
 
 private String cep;
-@JsonIdentityInfo(
-		  generator = ObjectIdGenerators.PropertyGenerator.class, 
-		  property = "codigo")
-@OneToMany(mappedBy="cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "codigo")
+@OneToMany(mappedBy="cliente")
 private List<Animal> animal = new ArrayList<Animal>();
-
-
-
 
 public List<Animal> getAnimal() {
 	return animal;

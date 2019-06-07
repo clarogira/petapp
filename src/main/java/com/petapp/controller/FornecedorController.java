@@ -1,5 +1,7 @@
 package com.petapp.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -21,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.petapp.controller.page.PageWrapper;
+import com.petapp.dto.FornecedorDTO;
 import com.petapp.model.Fornecedor;
 import com.petapp.model.Ramo;
 import com.petapp.repository.FornecedorRepository;
@@ -106,6 +109,12 @@ public class FornecedorController {
 			mv.addObject(fornecedor);
 			return mv;
 		}
+		
+		@RequestMapping("/filtro")
+	     public @ResponseBody
+	     List<FornecedorDTO> filtradas(String nome) {
+			        return fr.filtradas(nome.toLowerCase());
+			    }
 	}
 	
 

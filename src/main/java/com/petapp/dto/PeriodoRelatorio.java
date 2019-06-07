@@ -4,8 +4,8 @@ import java.time.LocalDate;
 
 public class PeriodoRelatorio {
 
-	private LocalDate dataInicio =LocalDate.now();
-	private LocalDate dataFim = LocalDate.parse("2022-05-01");
+	private LocalDate dataInicio =LocalDate.now().minusDays(1);
+	private LocalDate dataFim = LocalDate.now();
 	private Integer min = -50;
 	private Integer max = 100;
 	

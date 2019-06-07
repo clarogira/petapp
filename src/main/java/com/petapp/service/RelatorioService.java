@@ -14,6 +14,9 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.petapp.dto.PeriodoRelatorioFinanceiro;
+import com.petapp.model.Situacao;
+import com.petapp.model.Tipo;
 import com.petapp.dto.PeriodoRelatorio;
 
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -29,6 +32,8 @@ public class RelatorioService {
 	java.util.Date dataFim; 
 	Integer min;
 	Integer max;
+	Tipo tipo;
+	Situacao situacao;
 	
 	public byte[] gerarRelatorioVendasEmitidas(PeriodoRelatorio periodoRelatorio) throws Exception {
 		
@@ -41,6 +46,7 @@ public class RelatorioService {
 		parametros.put("format", "pdf");
 		parametros.put("data_inicio", dataInicio);
 		parametros.put("data_fim", dataFim);
+		
 		
 		InputStream inputStream = this.getClass()
 				.getResourceAsStream("/relatorios/relatorio_vendas_emitidas.jasper");
@@ -83,10 +89,62 @@ public class RelatorioService {
 		}
 	}
 
+
+
+public byte[] gerarRelatorioContasAPagar(com.petapp.dto.PeriodoRelatorioFinanceiro periodoRelatorioFinanceiro) throws Exception {
+	
+	dataInicio = Date.from(LocalDateTime.of(periodoRelatorioFinanceiro.getDataDe(), LocalTime.of(0, 0, 0))
+			.atZone(ZoneId.systemDefault()).toInstant());
+	dataFim = Date.from(LocalDateTime.of(periodoRelatorioFinanceiro.getDataAte(), LocalTime.of(23, 59, 59))
+			.atZone(ZoneId.systemDefault()).toInstant());
+	tipo = periodoRelatorioFinanceiro.getTipo();
+	situacao = periodoRelatorioFinanceiro.getSituacao();
+		
+		Map<String, Object> parametros = new HashMap<>();
+		parametros.put("format", "pdf");
+		parametros.put("dataDe", dataInicio);
+		parametros.put("dataAte", dataFim);
+		parametros.put("situacao", situacao);
+		parametros.put("tipo", tipo);
+		
+		InputStream inputStream = this.getClass()
+				.getResourceAsStream("/relatorios/relatorio_contas_agendadas.jasper");
+		
+		Connection con = this.dataSource.getConnection();
+		
+		try {
+			JasperPrint jasperPrint = JasperFillManager.fillReport(inputStream, parametros, con);
+			return JasperExportManager.exportReportToPdf(jasperPrint);
+		} finally {
+			con.close();
+		}
+	}
+
+public byte[] gerarRelatorioContasAReceber(com.petapp.dto.PeriodoRelatorioFinanceiro periodoRelatorioFinanceiro) throws Exception {
+		
+	dataInicio = Date.from(LocalDateTime.of(periodoRelatorioFinanceiro.getDataDe(), LocalTime.of(0, 0, 0))
+			.atZone(ZoneId.systemDefault()).toInstant());
+	dataFim = Date.from(LocalDateTime.of(periodoRelatorioFinanceiro.getDataAte(), LocalTime.of(23, 59, 59))
+			.atZone(ZoneId.systemDefault()).toInstant());
+		
+		Map<String, Object> parametros = new HashMap<>();
+		parametros.put("format", "pdf");
+		parametros.put("dataDe", dataInicio);
+		parametros.put("dataAte", dataFim);
+		
+		InputStream inputStream = this.getClass()
+				.getResourceAsStream("/relatorios/relatorio_contas_a_pagar.jasper");
+		
+		Connection con = this.dataSource.getConnection();
+		
+		try {
+			JasperPrint jasperPrint = JasperFillManager.fillReport(inputStream, parametros, con);
+			return JasperExportManager.exportReportToPdf(jasperPrint);
+		} finally {
+			con.close();
+		}
+	}
 }
-
-
-
 
 
 

@@ -46,7 +46,8 @@ public class Fornecedor implements Serializable {
 	@OneToMany(mappedBy = "fornecedor", cascade = CascadeType.ALL)
 	private List<Produto> produtos = new ArrayList<Produto>();
 	
-	
+	 @OneToMany(mappedBy = "fornecedor") // orphanRemoval - Não pode ter títulos sem entidade
+	    private List<Titulo> titulo = new ArrayList<>();
 
 	public Long getCodigo() {
 		return codigo;
@@ -122,6 +123,15 @@ public class Fornecedor implements Serializable {
 	
 	public boolean isNova() {
 		return codigo == null;
+	}
+	
+	
+	public List<Titulo> getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(List<Titulo> titulo) {
+		this.titulo = titulo;
 	}
 
 	@Override
