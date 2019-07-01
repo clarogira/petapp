@@ -14,7 +14,6 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.petapp.dto.PeriodoRelatorioFinanceiro;
 import com.petapp.model.Situacao;
 import com.petapp.model.Tipo;
 import com.petapp.dto.PeriodoRelatorio;

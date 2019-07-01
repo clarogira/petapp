@@ -19,6 +19,8 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.util.StringUtils;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Produto implements Serializable {
 
@@ -60,7 +62,8 @@ public class Produto implements Serializable {
 
 	@Transient
 	private boolean novaFoto;
-
+	
+	@JsonBackReference
 	@NotNull(message = "O fornecedor é obrigatório")
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "fornecedor_codigo")

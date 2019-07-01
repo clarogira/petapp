@@ -5,15 +5,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 
@@ -45,9 +44,14 @@ private String complemento;
 private String bairro;
 
 private String cep;
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "codigo")
-@OneToMany(mappedBy="cliente")
+
+@JsonManagedReference
+@JsonIgnore
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "codigo")
+@OneToMany(mappedBy = "cliente" )
 private List<Animal> animal = new ArrayList<Animal>();
+
+
 
 public List<Animal> getAnimal() {
 	return animal;

@@ -55,7 +55,7 @@ public class Venda implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private Status status = Status.ABERTO;
 
-	@OneToMany(mappedBy = "venda", cascade = CascadeType.ALL , orphanRemoval = true)
+	@OneToMany(mappedBy = "venda", cascade = CascadeType.ALL)
 	private List<ItemVenda> itens = new ArrayList<>();
 
 	@Transient

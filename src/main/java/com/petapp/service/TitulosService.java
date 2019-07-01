@@ -1,6 +1,5 @@
 package com.petapp.service;
 
-import com.petapp.model.Animal;
 import com.petapp.model.Titulo;
 import com.petapp.repository.TituloRepository;
 import com.petapp.service.exception.ImpossivelExcluirEntidadeException;
